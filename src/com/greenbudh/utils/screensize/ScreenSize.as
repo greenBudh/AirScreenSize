@@ -29,7 +29,6 @@ public class ScreenSize {
 
     }
     private var _resizeEventFiredOnceAlready:Boolean;
-    private const _screenBounds:Rectangle = Screen.mainScreen.visibleBounds;
     private var _stageWidth:Number; // Don't get confused: for our use, we mean the SHORTEST visible screen length for the app, irrespective of device orientation.  Think of the app being in portrait mode (unlike in Sierakowski's blog)
     private var _stageHeight:Number; // LONGEST visible screen length for the app.
 
@@ -92,8 +91,17 @@ public class ScreenSize {
         // stretched or not, on the device, but does not affect the values returned by stageWidth/Height ).
 
 
+         var _screenBounds:Rectangle = Screen.mainScreen.visibleBounds;
+
         _stageWidth = Math.min( _stage.fullScreenWidth, _screenBounds.width );
         _stageHeight = Math.min( _stage.fullScreenHeight, _screenBounds.height );
+
+
+
+        _stageWidth =_stage.fullScreenWidth;
+        _stageHeight =_stage.fullScreenHeight; //uncoment on emulator
+
+
         // Above: fullScreenWidth and _screenBounds.width always refer to the same side of the screen,
         // on any OS and device AFIK, so we're comparing apples to apples.
 
